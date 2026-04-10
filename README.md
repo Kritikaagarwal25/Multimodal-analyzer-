@@ -1,70 +1,185 @@
-# Multimodal Medical Report Analyzer 🏥
+# 🏥 Multimodal Medical Report Analyzer
 
-A specialized AI assistant designed for medical professionals and patients. It analyzes medical reports, documents (PDFs), and images  using advanced LLMs (Llama 4 Scout) to provide health-related insights.
+A specialized AI assistant designed for medical professionals and patients. It analyzes medical reports, PDFs, and medical images using advanced multimodal LLMs to generate meaningful health insights.
+
+---
 
 ## ✨ Features
 
--   **Strict Medical Domain**: The AI is restricted to medical topics only. It validates all uploaded content and text queries, rejecting non-medical inputs (e.g., recipes, general coding).
--   **Multimodal Analysis**: 
-    -   **PDF Reports**: Extract and analyze text from medical PDF documents.
-    -   **Medical Imaging**: Analyze medical images for insights.
--   **Persistent History**: All chat sessions are securely stored in a local SQLite database (`chat.db`).
--   **Modern UI**:
-    -   Streamlined sidebar with one-click access to previous sessions.
-    -   Clean, distraction-free chat interface.
-    -   Dark mode optimization.
+* **Strict Medical Domain**
+
+  * Accepts only medical-related queries and files
+  * Rejects irrelevant inputs (e.g., coding, recipes)
+
+* **Multimodal Analysis**
+
+  * 📄 Extracts and analyzes **medical PDFs**
+  * 🖼️ Interprets **medical images**
+
+* **Persistent Chat History**
+
+  * Stores all sessions securely using local database (`chat.db`)
+
+* **Modern UI**
+
+  * Clean chat interface
+  * Sidebar with session history
+  * Dark mode optimized
+
+---
+
+## 🧠 Architecture Overview
+
+### 🔄 Workflow
+
+1. **User Input**
+
+   * Text / PDF / Image
+
+2. **Validation Layer**
+
+   * Filters strictly medical content
+
+3. **Processing Layer**
+
+   * PDF → Text extraction
+   * Image → Vision processing
+
+4. **LLM Orchestration**
+
+   * Managed via **LangChain**
+   * Stateful flow using **LangGraph**
+
+5. **Inference**
+
+   * Powered by Llama 4 Scout via Groq API
+
+6. **Storage**
+
+   * SQLite database
+
+7. **Frontend**
+
+   * Streamlit UI
+
+---
+
+## 🔗 LangGraph Workflow
+
+```mermaid
+graph TD
+    A[User Input] --> B[Medical Validator]
+    B -->|Valid| C[Router]
+
+    C -->|PDF| D[PDF Parser]
+    C -->|Image| E[Image Analyzer]
+    C -->|Text| F[Direct Query]
+
+    D --> G[LangChain Processing]
+    E --> G
+    F --> G
+
+    G --> H[LLM - Llama 4 Scout]
+    H --> I[Response Formatter]
+    I --> J[Store in SQLite]
+    J --> K[UI Output]
+```
+
+---
+
+## ⚙️ Tech Stack
+
+* Streamlit – Frontend framework
+* Groq API – Fast LLM inference
+* Llama 4 Scout – Multimodal AI model
+* LangChain – LLM orchestration
+* LangGraph – Stateful workflows
+* SQLite – Local database
+* PyPDF2 – PDF text extraction
+* Pillow – Image processing
+
+---
 
 ## 🚀 Getting Started
 
-### Prerequisites
+### 📌 Prerequisites
 
--   Python 3.10+
--   [Groq API Key](https://console.groq.com/keys)
+* Python 3.10+
+* Groq API Key
 
-### Installation
+---
 
+### 🔧 Installation
 
+```bash
+pip install -r requirements.txt
+```
 
-1.  **Install dependencies**:
-    ```bash
-    pip install -r requirements.txt
-    ```
+---
 
-2.  **Configure Environment**:
-    Create a `.env` file:
-    ```env
-    GROQ_API_KEY=your_groq_api_key_here
-    ```
+### 🔐 Environment Setup
 
-### Usage
+Create a `.env` file:
 
-Run the application:
+```env
+GROQ_API_KEY=your_groq_api_key_here
+```
+
+---
+
+### ▶️ Run the App
+
 ```bash
 streamlit run app.py
 ```
-*Or use the helper script:*
+
+**OR**
+
 ```bash
 ./run.sh
 ```
+
+---
 
 ## 📂 Project Structure
 
 ```
 multimodal-analyzer/
-├── app.py              # Main application logic
-├── database.py         # SQLite database management
-├── assets/             # UI assets (CSS, HTML)
-├── chat.db             # Local database (created on run)
+├── app.py              # Main app
+├── database.py         # DB handling
+├── assets/             # UI assets
+├── chat.db             # SQLite DB
 ├── requirements.txt    # Dependencies
-├── .env                # Configuration
-└── run.sh              # Launcher script
+├── .env                # Config
+└── run.sh              # Script
 ```
 
-## 🛠️ Built With
+---
 
--   **Streamlit** - Frontend Framework
--   **Groq API** - Llama 4 Scout (Multimodal LLM)
--   **SQLite** - Data Persistence
--   **PyPDF2** & **Pillow** - File Processing
+## 🚀 Future Improvements
+
+* 🔍 RAG with medical knowledge base
+* 🧬 Clinical ontology integration
+* 📊 Report dashboards
+* 🔐 HIPAA-compliant deployment
+* 🧠 Fine-tuned medical models
+
+---
+
+## ⚠️ Disclaimer
+
+This tool is for **informational purposes only** and does not replace professional medical advice, diagnosis, or treatment.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to fork the repo and submit a pull request.
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License.
 
 ---
