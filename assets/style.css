@@ -1,0 +1,53 @@
+.block-container {
+    padding-top: 8rem !important;
+}
+
+#MainMenu {
+    visibility: hidden;
+}
+
+.stDeployButton {
+    display: none;
+}
+
+footer {
+    visibility: hidden;
+}
+
+#stDecoration {
+    display: none;
+}
+
+
+div[data-testid="stVerticalBlockBorderWrapper"],
+div[data-testid="stVerticalBlockBorderWrapper"]>div,
+div[data-testid="stVerticalBlock"] {
+    border: none !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+div[data-testid="stChatInput"] {
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+
+div[data-testid="stChatInput"] textarea {
+    background-color: #1E1E1E !important;
+    border: 1px solid #333 !important;
+    color: #FAFAFA !important;
+}
+
+div[data-testid="stBottomBlock"] {
+    border: none !important;
+}
+
+h1 {
+    text-align: center;
+}
+
+.welcome-message {
+    text-align: center;
+    margin-top: 15vh;
+}
