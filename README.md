@@ -62,31 +62,6 @@ A specialized AI assistant designed for medical professionals and patients. It a
 
    * Streamlit UI
 
----
-
-## 🔗 LangGraph Workflow
-
-```mermaid
-graph TD
-    A[User Input] --> B[Medical Validator]
-    B -->|Valid| C[Router]
-
-    C -->|PDF| D[PDF Parser]
-    C -->|Image| E[Image Analyzer]
-    C -->|Text| F[Direct Query]
-
-    D --> G[LangChain Processing]
-    E --> G
-    F --> G
-
-    G --> H[LLM - Llama 4 Scout]
-    H --> I[Response Formatter]
-    I --> J[Store in SQLite]
-    J --> K[UI Output]
-```
-
----
-
 ## ⚙️ Tech Stack
 
 * Streamlit – Frontend framework
